@@ -3,7 +3,7 @@
     <div class="q-gutter-y-md" style="max-width: 70%; margin: -200px auto">
       <q-card>
         <q-tabs
-          v-model="tab"
+          v-model="tabTourTravel"
           dense
           class="text-white tabs"
           active-class="active-tab"
@@ -25,10 +25,58 @@
 
         <q-separator></q-separator>
 
-        <q-tab-panels v-model="tab" animated>
+        <q-tab-panels v-model="tabTourTravel" animated>
           <q-tab-panel name="tourTravel">
-            <div class="text-h6">Mails</div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <div class="text-h6">
+              <q-btn
+                @click="() => (isForeign = false)"
+                class="q-mr-md"
+                :color="isForeign ? 'white' : 'primary'"
+                label="Domestic Tour"
+                :text-color="isForeign ? 'black' : 'white'"
+              />
+              <q-btn
+                @click="() => (isForeign = true)"
+                :color="isForeign ? 'primary' : 'white'"
+                :text-color="isForeign ? 'white' : 'black'"
+                label="Tour Foreign"
+              />
+            </div>
+            <div v-if="!isForeign">
+              <q-tabs
+                v-model="tabTypeTour"
+                dense
+                class="text-grey"
+                active-color="primary"
+                indicator-color="primary"
+                align="start"
+                narrow-indicator
+              >
+                <q-tab name="packageTour" label="Package Tour" />
+                <q-tab name="familyTour" label="Family Tour" />
+                <q-tab name="transVietTour" label="Trans Viet Nam Tour" />
+              </q-tabs>
+
+              <q-separator />
+
+              <q-tab-panels v-model="tabTypeTour" animated>
+                <q-tab-panel name="packageTour">
+                  <div class="text-h6">Package Tour</div>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </q-tab-panel>
+
+                <q-tab-panel name="familyTour">
+                  <div class="text-h6">Family Tour</div>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </q-tab-panel>
+
+                <q-tab-panel name="transVietTour">
+                  <div class="text-h6">Trans Viet Nam Tour</div>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </q-tab-panel>
+              </q-tab-panels>
+            </div>
+            <SearchTourForm v-else />
           </q-tab-panel>
 
           <q-tab-panel name="hotel">
@@ -62,10 +110,14 @@
 
 <script>
 import { ref } from "vue";
+import SearchTourForm from "./SearchTourForm.vue";
 export default {
+  components: { SearchTourForm },
   setup() {
     return {
-      tab: ref("tourTravel"),
+      tabTourTravel: ref("tourTravel"),
+      tabTypeTour: ref("packageTour"),
+      isForeign: ref(false),
     };
   },
 };

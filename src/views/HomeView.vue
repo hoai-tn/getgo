@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import SearchBox from "@/components/SearchBox.vue";
+import SearchBox from "@/components/searchBox/index.vue";
 export default {
   name: "HomeView",
   components: { SearchBox },
