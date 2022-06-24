@@ -46,7 +46,7 @@
               <q-tabs
                 v-model="tabTypeTour"
                 dense
-                class="text-grey"
+                class="text-grey q-mt-md"
                 active-color="primary"
                 indicator-color="primary"
                 align="start"
@@ -61,13 +61,11 @@
 
               <q-tab-panels v-model="tabTypeTour" animated>
                 <q-tab-panel name="packageTour">
-                  <div class="text-h6">Package Tour</div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  <SearchTourForm />
                 </q-tab-panel>
 
                 <q-tab-panel name="familyTour">
-                  <div class="text-h6">Family Tour</div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  <SearchTourForm />
                 </q-tab-panel>
 
                 <q-tab-panel name="transVietTour">
@@ -80,8 +78,7 @@
           </q-tab-panel>
 
           <q-tab-panel name="hotel">
-            <div class="text-h6">Alarms</div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <SearchHoltelForm/>
           </q-tab-panel>
 
           <q-tab-panel name="planePlusHotel">
@@ -111,8 +108,9 @@
 <script>
 import { ref } from "vue";
 import SearchTourForm from "./SearchTourForm.vue";
+import SearchHoltelForm from "./SearchHoltelForm.vue";
 export default {
-  components: { SearchTourForm },
+  components: { SearchTourForm, SearchHoltelForm },
   setup() {
     return {
       tabTourTravel: ref("tourTravel"),
