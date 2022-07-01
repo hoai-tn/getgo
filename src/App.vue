@@ -24,3 +24,8 @@ export default {
   },
 };
 </script>
+<style>
+.select-box .q-btn-dropdown__arrow {
+  display: none;
+}
+</style>

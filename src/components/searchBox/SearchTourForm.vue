@@ -3,9 +3,9 @@
     <q-select
       borderless
       class="select-box"
-      v-model="model"
-      :options="options"
-      label="Start Place"
+      v-model="startPlace"
+      :options="placeOptions"
+      label="Điểm đi"
       bg-color="white"
     >
       <template v-slot:prepend>
@@ -16,9 +16,9 @@
     <q-select
       borderless
       class="select-box"
-      v-model="model"
-      :options="options"
-      label="Arrive Place "
+      v-model="arrivePlace"
+      :options="arrivePlaceOptions"
+      label="Điểm đến"
       bg-color="white"
     >
       <template v-slot:prepend>
@@ -30,7 +30,7 @@
       v-model="dateStart"
       mask="date"
       :rules="['date']"
-      placeholder="Start Date"
+      placeholder="Ngày đi"
       borderless
     >
       <template v-slot:prepend>
@@ -51,9 +51,9 @@
     </q-input>
     <q-select
       class="select-box"
-      v-model="model"
-      :options="options"
-      label="Number Of Days"
+      v-model="numberOfDays"
+      :options="dayOptions"
+      label="Số ngày"
       borderless
     >
       <template v-slot:prepend>
@@ -73,11 +73,16 @@ export default {
   setup() {
     return {
       model: ref(null),
-      options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
-      dense: ref(false),
-      denseOpts: ref(false),
+      startPlace: ref(null),
+      arrivePlace: ref(null),
       dateStart: ref(""),
       numberOfDays: ref(""),
+
+      placeOptions: ["Nha Trang", "Đà Lạt", "Phú Quốc"],
+      arrivePlaceOptions: ["Ninh Thuận", "Đà Nẵng", "Khánh Hòa"],
+      dayOptions: ["1 - 3 ngày", "4 - 7 ngày", "8 - 14 ngày", "> 14 ngày"],
+      dense: ref(false),
+      denseOpts: ref(false),
     };
   },
 };

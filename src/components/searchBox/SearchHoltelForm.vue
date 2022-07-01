@@ -3,113 +3,191 @@
     <div>Hotel</div>
     <div class="q-mt-sm">
       <div class="row justify-between">
-        <q-input
-          v-model="text"
-          class="select-box"
-          label="Label"
-          bg-color="white"
-          borderless
-          style="width: 50%"
-        >
-          <template v-slot:prepend>
-            <q-icon name="place" />
-          </template>
-        </q-input>
-        <q-input
-          v-model="dateStart"
-          class="select-box"
-          mask="date"
-          :rules="['date']"
-          placeholder="Start Date"
-          borderless
-          style="width: 24%"
-        >
-          <template v-slot:prepend>
-            <q-icon name="event" class="cursor-pointer">
-              <q-popup-proxy
-                ref="qDateProxy"
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-date v-model="dateStart">
-                  <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
-                  </div>
-                </q-date>
-              </q-popup-proxy>
-            </q-icon>
-          </template>
-        </q-input>
-        <q-input
-          v-model="dateStart"
-          class="select-box"
-          mask="date"
-          :rules="['date']"
-          placeholder="Start Date"
-          borderless
-          style="width: 24%"
-        >
-          <template v-slot:prepend>
-            <q-icon name="event" class="cursor-pointer">
-              <q-popup-proxy
-                ref="qDateProxy"
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-date v-model="dateStart">
-                  <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
-                  </div>
-                </q-date>
-              </q-popup-proxy>
-            </q-icon>
-          </template>
-        </q-input>
+        <div class="col-6 q-pr-sm">
+          <q-input
+            v-model="arrivePlace"
+            class="select-box"
+            label="Điểm đến"
+            bg-color="white"
+            borderless
+          >
+            <template v-slot:prepend>
+              <q-icon name="place" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-3 q-px-sm">
+          <q-input
+            v-model="startDate"
+            class="select-box q-px-sm"
+            mask="date"
+            :rules="['date']"
+            placeholder="Ngày đi"
+            borderless
+          >
+            <template v-slot:prepend>
+              <q-icon name="event" class="cursor-pointer">
+                <q-popup-proxy
+                  ref="qDateProxy"
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-date v-model="startDate">
+                    <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                    </div>
+                  </q-date>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+        </div>
+
+        <div class="col-3 q-pl-sm">
+          <q-input
+            v-model="returnDay"
+            class="select-box col-3"
+            mask="date"
+            :rules="['date']"
+            placeholder="Ngày về"
+            borderless
+          >
+            <template v-slot:prepend>
+              <q-icon name="event" class="cursor-pointer">
+                <q-popup-proxy
+                  ref="qDateProxy"
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-date v-model="returnDay">
+                    <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                    </div>
+                  </q-date>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+        </div>
       </div>
-      <div class="row justify-between">
-        <div class="select-box">
-          <div class="relative-position custom-select-box">
-            <div>Number Of Peoples</div>
-            <q-list v-if="!isShowNumberOfPeople" class="absolute-top z-top">
-              <q-item clickable v-close-popup @click="onItemClick">
-                <q-item-section>
-                  <q-item-label>Photos</q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-close-popup @click="onItemClick">
-                <q-item-section>
-                  <q-item-label>Videos</q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-close-popup @click="onItemClick">
-                <q-item-section>
-                  <q-item-label>Articles</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
+      <div class="row justify-between q-mt-md">
+        <div class="col-3 q-pr-sm">
+          <div class="select-box">
+            <q-btn-dropdown class="btn-dropdown items-start">
+              <template v-slot:label>
+                <div
+                  class="no-wrap text-left flex items-center"
+                  style="text-transform: none"
+                >
+                  <q-icon name="place" />
+                  <div class="float-right">
+                    <span>Số người</span>
+                    <div class="text-subtitle2">{{ totalPeople }} khách</div>
+                  </div>
+                </div>
+              </template>
+              <q-list>
+                <q-item disable @click="onItemClick">
+                  <q-item-section>
+                    <q-item-label>Số người tham gia</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable @click="onItemClick">
+                  <q-item-section>
+                    <q-item-label class="row justify-between">
+                      <div>
+                        <q-btn
+                          @click="
+                            () =>
+                              numberOfPeople.Adults > 0
+                                ? numberOfPeople.Adults--
+                                : 0
+                          "
+                          >-</q-btn
+                        >
+                        <span class="q-mx-sm">{{ numberOfPeople.Adults }}</span>
+                        <q-btn @click="() => numberOfPeople.Adults++">+</q-btn>
+                      </div>
+                      <div>
+                        <div>Người lớn</div>
+                        <small>Từ 12 tuổi trở lên</small>
+                      </div>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
           </div>
         </div>
-        <q-btn padding="7px" color="primary">
-          <q-icon name="arrow_right_alt" size="50px" />
-        </q-btn>
+        <div class="col-3 q-px-sm">
+          <div class="select-box">
+            <q-btn-dropdown class="btn-dropdown items-start">
+              <template v-slot:label>
+                <div
+                  class="no-wrap text-left flex items-center"
+                  style="text-transform: none"
+                >
+                  <q-icon name="place" />
+                  <div class="float-right">
+                    <span>Số phòng</span>
+                    <div class="text-subtitle2">0 phòng</div>
+                  </div>
+                </div>
+              </template>
+              <q-list>
+                <q-item disable @click="onItemClick">
+                  <q-item-section>
+                    <q-item-label>Số phòng</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable @click="onItemClick">
+                  <q-item-section>
+                    <q-item-label>
+                      <div>
+                        <q-btn>-</q-btn>
+                        <span class="q-mx-sm">0</span>
+                        <q-btn class="q-mr-md">+</q-btn>
+                        Phòng
+                      </div>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+          </div>
+        </div>
+        <div class="col-6 q-pl-sm">
+          <q-btn style="width: 100%" color="primary">
+            <q-icon name="arrow_right_alt" size="50px" />
+          </q-btn>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    return {
-      model: ref(null),
-      options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
-      dense: ref(false),
-      denseOpts: ref(false),
-      dateStart: ref(""),
-      numberOfDays: ref(""),
-    };
-  },
+
+const numberOfPeople = ref({
+  Adults: 0,
+  children: 0,
+  baby: 0,
+});
+
+const model = ref(null);
+const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
+const dense = ref(false);
+const denseOpts = ref(false);
+const dateStart = ref("");
+const numberOfDays = ref("");
+
+const totalPeople =    () => {
+  numberOfPeople.value.Adults +
+    numberOfPeople.value.children +
+    numberOfPeople.value.baby;
 };
 </script>
 
@@ -118,8 +196,11 @@ export default {
   border: 4px solid #ffc709
   border-radius: 8px
   padding: 0px !important
-  .custom-select-box
-    width: 24%
-    display: inline-block
 
+  .btn-dropdown
+    color: white
+    height: 56px
+    padding: 2px
+    color: black
+    width: 100%
 </style>

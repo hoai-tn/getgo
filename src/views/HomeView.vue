@@ -3,12 +3,15 @@
     <div class="header-section relative-position">
       <div class="banner">
         <div>
-          <img src="../assets/images/banner_home.jpg" alt="banner">
+          <div style="background: #fff; height: 400px; width: 100vw"></div>
+          <!-- <img src="../assets/images/banner_home.jpg" alt="banner"> -->
         </div>
-        <SearchBox/>
+        <SearchBox />
       </div>
     </div>
-    <div class="col-8 q-mx-auto">body</div>
+    <div class="col-8 q-mx-auto">
+    
+    </div>
   </div>
 </template>
 
@@ -19,4 +22,12 @@ export default {
   components: { SearchBox },
 };
 </script>
-<style scoped></style>
+<style lang="sass" scoped>
+.select-box
+  border: 4px solid #ffc709
+  border-radius: 8px
+  padding: 0px !important
+  .custom-select-box
+    width: 24%
+    display: inline-block
+</style>
