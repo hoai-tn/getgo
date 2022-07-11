@@ -3,23 +3,27 @@
     <div class="header-section relative-position">
       <div class="banner">
         <div>
-          <div style="background: #fff; height: 400px; width: 100vw"></div>
-          <!-- <img src="../assets/images/banner_home.jpg" alt="banner"> -->
+          <!-- <div style="background: #fff; height: 400px; width: 100vw"></div> -->
+          <img src="../assets/images/banner_home.jpg" alt="banner" />
         </div>
         <SearchBox />
       </div>
     </div>
-    <div class="col-8 q-mx-auto">
-    
+    <!-- body -->
+    <div class="q-mx-auto" style="width: 70%">
+      <EndowSection />
+      <DiscoverySection />
     </div>
   </div>
 </template>
 
 <script>
 import SearchBox from "@/components/searchBox/index.vue";
+import EndowSection from "@/components/endowSection/index.vue";
+import DiscoverySection from "@/components/DiscoverySection.vue";
 export default {
   name: "HomeView",
-  components: { SearchBox },
+  components: { SearchBox, EndowSection, DiscoverySection },
 };
 </script>
 <style lang="sass" scoped>

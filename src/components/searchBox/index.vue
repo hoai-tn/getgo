@@ -124,7 +124,7 @@ export default {
 <style lang="sass" scoped>
 
 .search-box
-    min-height: 400px
+    min-height: 350px
     weight: 900px
     .tabs
         height: 90px

@@ -82,36 +82,77 @@
                   <q-icon name="place" />
                   <div class="float-right">
                     <span>Số người</span>
-                    <div class="text-subtitle2">{{ totalPeople }} khách</div>
+                    <div class="text-subtitle2">{{ totalOfPeoples }} khách</div>
                   </div>
                 </div>
               </template>
-              <q-list>
-                <q-item disable @click="onItemClick">
+              <q-list bordered>
+                <q-item disable>
                   <q-item-section>
                     <q-item-label>Số người tham gia</q-item-label>
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable @click="onItemClick">
+                <q-item clickable>
                   <q-item-section>
                     <q-item-label class="row justify-between">
                       <div>
                         <q-btn
-                          @click="
-                            () =>
-                              numberOfPeople.Adults > 0
-                                ? numberOfPeople.Adults--
-                                : 0
-                          "
-                          >-</q-btn
+                          :disable="numberOfPeople.adults === 0"
+                          @click="() => numberOfPeople.adults--"
                         >
-                        <span class="q-mx-sm">{{ numberOfPeople.Adults }}</span>
-                        <q-btn @click="() => numberOfPeople.Adults++">+</q-btn>
+                          -
+                        </q-btn>
+                        <span class="q-mx-sm">{{ numberOfPeople.adults }}</span>
+                        <q-btn @click="() => numberOfPeople.adults++">+</q-btn>
                       </div>
                       <div>
                         <div>Người lớn</div>
                         <small>Từ 12 tuổi trở lên</small>
+                      </div>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+                <q-item clickable>
+                  <q-item-section>
+                    <q-item-label class="row justify-between">
+                      <div>
+                        <q-btn
+                          :disable="numberOfPeople.children === 0"
+                          @click="() => numberOfPeople.children--"
+                        >
+                          -
+                        </q-btn>
+                        <span class="q-mx-sm">{{
+                          numberOfPeople.children
+                        }}</span>
+                        <q-btn @click="() => numberOfPeople.children++"
+                          >+</q-btn
+                        >
+                      </div>
+                      <div style="width: 86.43px">
+                        <div>Trẻ em</div>
+                        <small>Từ 2 - 11 tuổi</small>
+                      </div>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+                <q-item clickable>
+                  <q-item-section>
+                    <q-item-label class="row justify-between">
+                      <div>
+                        <q-btn
+                          :disable="numberOfPeople.baby === 0"
+                          @click="() => numberOfPeople.baby--"
+                        >
+                          -
+                        </q-btn>
+                        <span class="q-mx-sm">{{ numberOfPeople.baby }}</span>
+                        <q-btn @click="() => numberOfPeople.baby++">+</q-btn>
+                      </div>
+                      <div style="width: 86.43px">
+                        <div>Em bé</div>
+                        <small>Dưới 2 tuổi</small>
                       </div>
                     </q-item-label>
                   </q-item-section>
@@ -131,24 +172,33 @@
                   <q-icon name="place" />
                   <div class="float-right">
                     <span>Số phòng</span>
-                    <div class="text-subtitle2">0 phòng</div>
+                    <div class="text-subtitle2">
+                      {{ numberOftheRoom }} phòng
+                    </div>
                   </div>
                 </div>
               </template>
               <q-list>
-                <q-item disable @click="onItemClick">
+                <q-item disable>
                   <q-item-section>
                     <q-item-label>Số phòng</q-item-label>
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable @click="onItemClick">
+                <q-item clickable>
                   <q-item-section>
                     <q-item-label>
                       <div>
-                        <q-btn>-</q-btn>
-                        <span class="q-mx-sm">0</span>
-                        <q-btn class="q-mr-md">+</q-btn>
+                        <q-btn
+                          :disable="numberOftheRoom === 0"
+                          @click="() => numberOftheRoom--"
+                        >
+                          -
+                        </q-btn>
+                        <span class="q-mx-sm">{{ numberOftheRoom }}</span>
+                        <q-btn class="q-mr-md" @click="() => numberOftheRoom++">
+                          +
+                        </q-btn>
                         Phòng
                       </div>
                     </q-item-label>
@@ -169,23 +219,32 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const numberOfPeople = ref({
-  Adults: 0,
+  adults: 0,
   children: 0,
   baby: 0,
 });
+const arrivePlace = ref("");
+const returnDay = ref("");
 
-const model = ref(null);
-const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
-const dense = ref(false);
-const denseOpts = ref(false);
-const dateStart = ref("");
+const startDate = ref("");
+const returnDate = ref("");
 const numberOfDays = ref("");
+const numberOftheRoom = ref(0);
+const totalOfPeoples = computed({
+  get() {
+    return (
+      numberOfPeople.value.adults +
+      numberOfPeople.value.children +
+      numberOfPeople.value.baby
+    );
+  },
+});
 
-const totalPeople =    () => {
-  numberOfPeople.value.Adults +
+const totalPeople = () => {
+  numberOfPeople.value.adults +
     numberOfPeople.value.children +
     numberOfPeople.value.baby;
 };
