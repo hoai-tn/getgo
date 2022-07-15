@@ -3,7 +3,6 @@
     <div class="header-section relative-position">
       <div class="banner">
         <div>
-          <!-- <div style="background: #fff; height: 400px; width: 100vw"></div> -->
           <img src="../assets/images/banner_home.jpg" alt="banner" />
         </div>
         <SearchBox />
@@ -13,6 +12,8 @@
     <div class="q-mx-auto" style="width: 70%">
       <EndowSection />
       <DiscoverySection />
+      <EndowTour />
+      <EndowSpecial/>
     </div>
   </div>
 </template>
@@ -21,9 +22,11 @@
 import SearchBox from "@/components/searchBox/index.vue";
 import EndowSection from "@/components/endowSection/index.vue";
 import DiscoverySection from "@/components/DiscoverySection.vue";
+import EndowTour from "@/components/endowTourSection";
+import EndowSpecial from "@/components/endowSpecialSection"
 export default {
   name: "HomeView",
-  components: { SearchBox, EndowSection, DiscoverySection },
+  components: { SearchBox, EndowSection, DiscoverySection, EndowTour, EndowSpecial },
 };
 </script>
 <style lang="sass" scoped>
