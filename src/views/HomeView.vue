@@ -1,9 +1,14 @@
 <template>
-  <div class="home row">
+  <div class="home">
     <div class="header-section relative-position">
       <div class="banner">
         <div>
-          <img src="../assets/images/banner_home.jpg" alt="banner" />
+          <div style="background: #fff; height: 400px; width: 100vw"></div>
+          <!-- <img
+            src="../assets/images/banner_home.jpg"
+            alt="banner"
+            style="min-width: 100vw"
+          /> -->
         </div>
         <SearchBox />
       </div>
@@ -13,7 +18,8 @@
       <EndowSection />
       <DiscoverySection />
       <EndowTour />
-      <EndowSpecial/>
+      <EndowSpecial />
+      <AdvertisementSection />
     </div>
   </div>
 </template>
@@ -23,10 +29,18 @@ import SearchBox from "@/components/searchBox/index.vue";
 import EndowSection from "@/components/endowSection/index.vue";
 import DiscoverySection from "@/components/DiscoverySection.vue";
 import EndowTour from "@/components/endowTourSection";
-import EndowSpecial from "@/components/endowSpecialSection"
+import EndowSpecial from "@/components/endowSpecialSection";
+import AdvertisementSection from "@/components/AdvertisementSection";
 export default {
   name: "HomeView",
-  components: { SearchBox, EndowSection, DiscoverySection, EndowTour, EndowSpecial },
+  components: {
+    SearchBox,
+    EndowSection,
+    DiscoverySection,
+    EndowTour,
+    EndowSpecial,
+    AdvertisementSection,
+  },
 };
 </script>
 <style lang="sass" scoped>

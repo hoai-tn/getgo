@@ -1,6 +1,6 @@
 <template>
   <div id="discovery-section">
-    <h4 class="text-bold" style="margin: 0px">Khám phá sản phẩm Vietravel</h4>
+    <h4 class="text-bold">Khám phá sản phẩm Vietravel</h4>
     <div class="row justify-between">
       <q-card class="my-card">
         <img src="https://cdn.quasar.dev/img/parallax2.jpg" />

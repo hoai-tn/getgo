@@ -36,7 +36,10 @@
     </q-toolbar>
   </q-header>
 </template>
-<style lang="sass">
+<script>
+export default {};
+</script>
+<style lang="sass" scoped>
 .title
   font-size: 30px
   font-weight: bold

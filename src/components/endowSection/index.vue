@@ -1,6 +1,6 @@
 <template>
   <div class="q-mb-">
-    <h4 class="text-bold" style="margin: 0px">Ưu đãi</h4>
+    <h4 class="text-bold">Ưu đãi</h4>
     <q-carousel
       v-model="slide"
       transition-prev="slide-right"
