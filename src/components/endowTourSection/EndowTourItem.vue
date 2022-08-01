@@ -26,16 +26,20 @@
     </q-card-section>
     <q-card-section class="row justify-between items-end">
       <div>
-        <div style="font-size: 18px">
+        <div v-if="!props.isFindTour" style="font-size: 18px">
           Giá <span style="text-decoration: line-through"> 3,990,000₫ </span>
         </div>
         <div style="font-size: 18px; color: red; font-weight: 600">
           3,990,000₫
         </div>
+        <q-btn v-if="props.isFindTour" color="red" label="Đặt Ngay" />
       </div>
-      <div class="sale-box">3% Giảm</div>
+      <div v-if="props.isFindTour">
+        <q-btn outline color="primary" label="Xem chi tiết" />
+      </div>
+      <div v-else class="sale-box">3% Giảm</div>
     </q-card-section>
-    <q-card-section>
+    <q-card-section v-if="!props.isFindTour">
       <div class="time-remaining">Còn 00 ngày 00:24:37</div>
     </q-card-section>
     <q-card-section class="row justify-between items-end">
@@ -43,21 +47,23 @@
         + Thêm vào so sánh
       </div>
       <div>
-        <span style="text-decoration: underline; font-weight: bold">Số chỗ còn</span>
-        <span style="color: red; font-size: 23px; font-weight: bold;"> 4</span>
+        <span style="text-decoration: underline; font-weight: bold"
+          >Số chỗ còn</span
+        >
+        <span style="color: red; font-size: 23px; font-weight: bold"> 4</span>
       </div>
     </q-card-section>
   </q-card>
 </template>
 
-<script>
-export default {
-  setup() {
-    return {
-      lorem: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    };
+<script setup>
+const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+const props = defineProps({
+  isFindTour: {
+    type: Boolean,
+    default: false,
   },
-};
+});
 </script>
 
 <style lang="sass" scoped>

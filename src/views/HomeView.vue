@@ -3,12 +3,11 @@
     <div class="header-section relative-position">
       <div class="banner">
         <div>
-          <div style="background: #fff; height: 400px; width: 100vw"></div>
-          <!-- <img
+          <img
             src="../assets/images/banner_home.jpg"
             alt="banner"
             style="min-width: 100vw"
-          /> -->
+          />
         </div>
         <SearchBox />
       </div>

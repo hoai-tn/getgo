@@ -1,10 +1,10 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <Nav/>
+    <Nav />
     <q-page-container>
       <router-view></router-view>
     </q-page-container>
-    <p>footer</p>
+    <Footer />
   </q-layout>
 </template>
 
@@ -12,10 +12,12 @@
 import { ref } from "vue";
 
 import Nav from "@/components/Nav.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   name: "LayoutDefault",
   components: {
     Nav,
+    Footer,
   },
   setup() {
     return {
